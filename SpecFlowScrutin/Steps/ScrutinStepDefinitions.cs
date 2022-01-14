@@ -51,4 +51,58 @@ public sealed class CalculatorStepDefinitions
 
         _scenarioContext.Pending();
     }
+
+    [Given(@"I am a candidate")]
+    public void GivenIAmACandidate()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [When(@"I apply")]
+    public void WhenIApply()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [Then(@"the result is a candidate list")]
+    public void ThenTheResultIsACandidateList()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [Then(@"I am in the candidate list")]
+    public void ThenIAmInTheCandidateList()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [Given(@"I am a user")]
+    public void GivenIAmAUser()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [When(@"i request the candidate list")]
+    public void WhenIRequestTheCandidateList()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [When(@"i select a candidate")]
+    public void WhenISelectACandidate()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [Then(@"i get notify that my vote is a success")]
+    public void ThenIGetNotifyThatMyVoteIsASuccess()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [Then(@"i get notify that my vote is unsuccessful")]
+    public void ThenIGetNotifyThatMyVoteIsUnsuccessful()
+    {
+        ScenarioContext.StepIsPending();
+    }
 }
