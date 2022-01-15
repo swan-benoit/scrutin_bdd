@@ -50,17 +50,34 @@ public class Scrutin
 
     public string Vote(User candidate, User voter)
     {
-        if (IsOpen)
+        if (!IsOpen)
         {
-            TotalVote++;
-            var candidatTupple = Votes[candidate];
-            var newVoteCount = candidatTupple.Item1 + 1;
-            var ListVoter = candidatTupple.Item2;
-            ListVoter.Add(voter);
-            Votes[candidate] = Tuple.Create(newVoteCount, ListVoter);
-            return "Votre vote à été pris en compte pour le candidat";
+            return "Le scrutin est fermé";
         }
-        return "Le scrutin est fermé";
+        if (hasAlreadyVote(voter))
+        {
+            return "A déjà voté";
+        }
+        TotalVote++;
+        var candidatTupple = Votes[candidate];
+        var newVoteCount = candidatTupple.Item1 + 1;
+        var ListVoter = candidatTupple.Item2;
+        ListVoter.Add(voter);
+        Votes[candidate] = Tuple.Create(newVoteCount, ListVoter);
+        return "A voté";
+    }
+
+    private bool hasAlreadyVote(User voter)
+    {
+        var alreadyVote = false;
+        foreach (var candidate in Votes)
+        {
+            if (candidate.Value.Item2.Contains(voter))
+            {
+                return true;
+            }
+        }
+        return alreadyVote;
     }
 
     public static Scrutin getScrutin(String id)

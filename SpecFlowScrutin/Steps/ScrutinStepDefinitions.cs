@@ -47,7 +47,7 @@ public sealed class ScrutinStepDefinitions
     [Given(@"I am a user")]
     public void GivenIAmAUser()
     {
-        user = admin;
+        user = new User("Marie");
     }
 
     [When(@"i request the candidate list")]
@@ -108,7 +108,7 @@ public sealed class ScrutinStepDefinitions
     [Then(@"I receive a message ""(.*)""")]
     public void ThenIReceiveAMessage(string p0)
     {
-        Assert.Equal(message, p0);
+        Assert.Equal(p0, message);
         
     }
 

@@ -38,11 +38,12 @@ Scenario: Vote
 	Given I am a user
 	And A scrutin is open
 	When i select a candidate
-	Then I receive a message "Votre vote à été pris en compte pour le candidat"
+	Then I receive a message "A voté"
 	
 @voteAgain
 Scenario: cannot vote
 	Given I am a user
+	And A scrutin is open
 	When i select a candidate
 	And i select a candidate 
-	Then i get notify that my vote is unsuccessful
+	Then I receive a message "A déjà voté"
