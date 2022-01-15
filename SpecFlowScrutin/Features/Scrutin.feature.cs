@@ -130,16 +130,16 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Obtain candidate list")]
+        [Xunit.SkippableFactAttribute(DisplayName="Cannot start a scrutin when list user < 2")]
         [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
-        [Xunit.TraitAttribute("Description", "Obtain candidate list")]
-        [Xunit.TraitAttribute("Category", "candidateList")]
-        public virtual void ObtainCandidateList()
+        [Xunit.TraitAttribute("Description", "Cannot start a scrutin when list user < 2")]
+        [Xunit.TraitAttribute("Category", "candidateDeclaration")]
+        public virtual void CannotStartAScrutinWhenListUser2()
         {
             string[] tagsOfScenario = new string[] {
-                    "candidateList"};
+                    "candidateDeclaration"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Obtain candidate list", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cannot start a scrutin when list user < 2", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -161,12 +161,104 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 17
- testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I am a administrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 18
- testRunner.When("i request the candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have a list of candidate with one candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
+ testRunner.When("I start a scrutin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.Then("I receive a message \"Scrutin must have at least 2 candidates\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Cannot start a scrutin when list user contain administrator")]
+        [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
+        [Xunit.TraitAttribute("Description", "Cannot start a scrutin when list user contain administrator")]
+        [Xunit.TraitAttribute("Category", "candidateDeclaration")]
+        public virtual void CannotStartAScrutinWhenListUserContainAdministrator()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "candidateDeclaration"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cannot start a scrutin when list user contain administrator", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 24
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 25
+  testRunner.Given("I am a administrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 26
+  testRunner.And("I have a list of candidate with the administrator in it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
+  testRunner.When("I start a scrutin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+  testRunner.Then("I receive a message \"Administrator cannot be also candidate\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Obtain candidate list")]
+        [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
+        [Xunit.TraitAttribute("Description", "Obtain candidate list")]
+        [Xunit.TraitAttribute("Category", "candidateList")]
+        public virtual void ObtainCandidateList()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "candidateList"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Obtain candidate list", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 32
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 33
+ testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 34
+ testRunner.When("i request the candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 35
  testRunner.Then("the result is a candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -183,7 +275,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "vote"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Vote", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 22
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -203,13 +295,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 39
  testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 40
  testRunner.When("i select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 41
  testRunner.Then("i get notify that my vote is a success", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -226,7 +318,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "voteAgain"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("cannot vote", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 28
+#line 44
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -246,16 +338,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 29
+#line 45
  testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 30
+#line 46
  testRunner.When("i select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 47
  testRunner.And("i select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 32
+#line 48
  testRunner.Then("i get notify that my vote is unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

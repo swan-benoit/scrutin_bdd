@@ -12,6 +12,20 @@ Scenario: Start a scrutin
 	When  I start a scrutin
 	Then the scrutin start
 	
+@candidateDeclaration
+Scenario: Cannot start a scrutin when list user < 2
+	Given I am a administrator
+	And I have a list of candidate with one candidate
+	When  I start a scrutin
+	Then I receive a message "Scrutin must have at least 2 candidates"
+	
+@candidateDeclaration
+	Scenario: Cannot start a scrutin when list user contain administrator
+		Given I am a administrator 
+		And I have a list of candidate with the administrator in it
+		When  I start a scrutin
+		Then I receive a message "Administrator cannot be also candidate"
+	
 @candidateList
 Scenario: Obtain candidate list
 	Given I am a user

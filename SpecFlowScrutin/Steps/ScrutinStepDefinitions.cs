@@ -12,6 +12,7 @@ public sealed class ScrutinStepDefinitions
     private User admin;
     private List<User> candidates;
     private Scrutin scrutin;
+    private string message;
 
     public ScrutinStepDefinitions(ScenarioContext scenarioContext)
     {
@@ -88,8 +89,8 @@ public sealed class ScrutinStepDefinitions
     [When(@"I start a scrutin")]
     public void WhenIStartAScrutin()
     {
-        var scrutinId = Scrutin.CreateScrutin(candidates, admin);
-        scrutin = Scrutin.getScrutin(scrutinId);
+        message = Scrutin.CreateScrutin(candidates, admin);
+        scrutin = Scrutin.getScrutin(message);
     }
 
     [Then(@"the scrutin start")]
@@ -103,5 +104,35 @@ public sealed class ScrutinStepDefinitions
     public void GivenIAmAAdministrator()
     {
         admin = new User("admin");
+    }
+
+    [Given(@"I have a list of candidate with one candidate")]
+    public void GivenIHaveAListOfCandidateWithOneCandidate()
+    {
+        candidates = new List<User>
+        {
+            new ("gerard"),
+        };
+    }
+
+    [Then(@"I receive a message ""(.*)""")]
+    public void ThenIReceiveAMessage(string p0)
+    {
+        Assert.Equal(message, p0);
+        
+    }
+
+   [Given(@"I have a list of candidate with the administrator in it")]
+    public void GivenIHaveAListOfCandidateWithTheAdministratorInIt()
+    {
+        candidates = new List<User>
+        {
+            new ("gerard"),
+            new ("jacque"),
+            new ("Rayane"),
+            new ("Enzo"),
+            new ("Swan"),
+            admin
+        };
     }
 }

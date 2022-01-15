@@ -17,6 +17,7 @@ public class Scrutin
         Id = Guid.NewGuid();
         Candidates = candidates;
         Administrator = administrator;
+        
     }
 
     public static string CreateScrutin(List<User> candidates, User administrator)
@@ -39,8 +40,15 @@ public class Scrutin
 
     public static Scrutin getScrutin(String id)
     {
-        var guid = Guid.Parse(id);
-        return Instances.FirstOrDefault(instance => instance.Id.Equals(guid), null);
+        try
+        {
+            var guid = Guid.Parse(id);
+            return Instances.FirstOrDefault(instance => instance.Id.Equals(guid), null);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
     
 }
