@@ -36,8 +36,9 @@ Scenario: Obtain candidate list
 @vote
 Scenario: Vote
 	Given I am a user
+	And A scrutin is open
 	When i select a candidate
-	Then i get notify that my vote is a success
+	Then I receive a message "Votre vote à été pris en compte pour le candidat"
 	
 @voteAgain
 Scenario: cannot vote

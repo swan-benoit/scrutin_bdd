@@ -59,20 +59,9 @@ public sealed class ScrutinStepDefinitions
     [When(@"i select a candidate")]
     public void WhenISelectACandidate()
     {
-        ScenarioContext.StepIsPending();
+        message = scrutin.Vote(candidates.First(), user);
     }
-
-    [Then(@"i get notify that my vote is a success")]
-    public void ThenIGetNotifyThatMyVoteIsASuccess()
-    {
-        ScenarioContext.StepIsPending();
-    }
-
-    [Then(@"i get notify that my vote is unsuccessful")]
-    public void ThenIGetNotifyThatMyVoteIsUnsuccessful()
-    {
-        ScenarioContext.StepIsPending();
-    }
+    
 
     [Given(@"I have a list of candidate")]
     public void GivenIHaveAListOfCandidate()

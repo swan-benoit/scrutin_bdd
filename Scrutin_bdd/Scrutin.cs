@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace Scrutin_bdd;
 
@@ -11,8 +12,8 @@ public class Scrutin
         get => _candidates;
         set => _candidates = value;
     }
-    private Dictionary<User, int> Votes { get;}
-    private int TotalVote { get;}
+    private Dictionary<User, Tuple<int, List<User>>> Votes { get;}
+    private int TotalVote { get; set; }
     private bool IsOpen { get; }
     private Guid Id { get;}
     private User Administrator { get; }
@@ -22,7 +23,12 @@ public class Scrutin
         Id = Guid.NewGuid();
         Candidates = candidates;
         Administrator = administrator;
-        
+        IsOpen = true;
+        Votes = new Dictionary<User, Tuple<int, List<User>>>();
+        foreach (var candidate in Candidates)
+        {
+            Votes.Add(candidate, Tuple.Create(0, new List<User>()));
+        }
     }
 
     public static string CreateScrutin(List<User> candidates, User administrator)
@@ -38,9 +44,23 @@ public class Scrutin
         }
 
         var scrutin = new Scrutin(candidates, administrator);
-        Instances.Add(scrutin); ;
+        Instances.Add(scrutin);
         return scrutin.Id.ToString();
+    }
 
+    public string Vote(User candidate, User voter)
+    {
+        if (IsOpen)
+        {
+            TotalVote++;
+            var candidatTupple = Votes[candidate];
+            var newVoteCount = candidatTupple.Item1 + 1;
+            var ListVoter = candidatTupple.Item2;
+            ListVoter.Add(voter);
+            Votes[candidate] = Tuple.Create(newVoteCount, ListVoter);
+            return "Votre vote à été pris en compte pour le candidat";
+        }
+        return "Le scrutin est fermé";
     }
 
     public static Scrutin getScrutin(String id)
