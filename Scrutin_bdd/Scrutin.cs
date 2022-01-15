@@ -16,13 +16,20 @@ public class Scrutin
     private int TotalVote { get; set; }
     private bool IsOpen { get; set; }
     private Guid Id { get;}
-    private User Administrator { get; }
+    private User _administator;
+
+    public User Administrator
+    {
+        get => _administator;
+        set => _administator = value;
+    }
     public static List<Scrutin> Instances = new ();
     private Scrutin(List<User> candidates, User administrator)
     {
         Id = Guid.NewGuid();
         Candidates = candidates;
         Administrator = administrator;
+        Administrator.ScrutinStrategy = new AdminScrutinStrategy(this);
         IsOpen = true;
         Votes = new Dictionary<User, Tuple<int, List<User>>>();
         foreach (var candidate in Candidates)
@@ -93,14 +100,13 @@ public class Scrutin
         }
     }
 
-    public string close(User admin)
+    public bool close(String adminId)
     {
-        if (admin.Equals(Administrator))
+        if (adminId == Administrator.Id.ToString())
         {
             IsOpen = false;
-            return "Le scrutin est fermé";
+            return true;
         }
-
-        return "Seulement l'administrateur peut fermer le scrutin";
+        return false;
     }
 }

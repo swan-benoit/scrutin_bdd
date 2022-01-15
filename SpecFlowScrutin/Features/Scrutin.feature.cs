@@ -363,16 +363,16 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Close scruttin")]
+        [Xunit.SkippableFactAttribute(DisplayName="Close scrutin")]
         [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
-        [Xunit.TraitAttribute("Description", "Close scruttin")]
+        [Xunit.TraitAttribute("Description", "Close scrutin")]
         [Xunit.TraitAttribute("Category", "closeScruttin")]
-        public virtual void CloseScruttin()
+        public virtual void CloseScrutin()
         {
             string[] tagsOfScenario = new string[] {
                     "closeScruttin"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Close scruttin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Close scrutin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 53
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -409,16 +409,16 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Close scruttin when i\'m not administrator")]
+        [Xunit.SkippableFactAttribute(DisplayName="Close scrutin when i\'m not administrator")]
         [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
-        [Xunit.TraitAttribute("Description", "Close scruttin when i\'m not administrator")]
+        [Xunit.TraitAttribute("Description", "Close scrutin when i\'m not administrator")]
         [Xunit.TraitAttribute("Category", "closeScruttinUser")]
-        public virtual void CloseScruttinWhenImNotAdministrator()
+        public virtual void CloseScrutinWhenImNotAdministrator()
         {
             string[] tagsOfScenario = new string[] {
                     "closeScruttinUser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Close scruttin when i\'m not administrator", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Close scrutin when i\'m not administrator", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 60
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

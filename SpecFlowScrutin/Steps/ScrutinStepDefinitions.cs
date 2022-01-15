@@ -81,6 +81,10 @@ public sealed class ScrutinStepDefinitions
     {
         message = Scrutin.CreateScrutin(candidates, admin);
         scrutin = Scrutin.getScrutin(message);
+        if (scrutin is Scrutin)
+        {
+            admin = scrutin.Administrator;
+        }
     }
 
     [Then(@"the scrutin start")]
@@ -112,7 +116,7 @@ public sealed class ScrutinStepDefinitions
         
     }
 
-   [Given(@"I have a list of candidate with the administrator in it")]
+    [Given(@"I have a list of candidate with the administrator in it")]
     public void GivenIHaveAListOfCandidateWithTheAdministratorInIt()
     {
         candidates = new List<User>
@@ -137,12 +141,14 @@ public sealed class ScrutinStepDefinitions
     [When(@"I close the scrutin as a adminstrator")]
     public void WhenICloseTheScrutin()
     {
-        message = scrutin.close(admin);
+        message = admin.closeScrutin();
+        // message = scrutin.close(admin);
     }
 
     [When(@"I close the scrutin as a user")]
     public void WhenICloseTheScrutinAsAUser()
     {
-        message = scrutin.close(user);
+        message = user.closeScrutin();
+        // message = scrutin.close(user);
     }
 }
