@@ -1,4 +1,7 @@
-﻿namespace SpecFlowScrutin.Steps;
+﻿using Scrutin_bdd;
+using Xunit;
+
+namespace SpecFlowScrutin.Steps;
 
 [Binding]
 public sealed class ScrutinStepDefinitions
@@ -6,6 +9,9 @@ public sealed class ScrutinStepDefinitions
     // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
     private readonly ScenarioContext _scenarioContext;
+    private User admin;
+    private List<User> candidates;
+    private Scrutin scrutin;
 
     public ScrutinStepDefinitions(ScenarioContext scenarioContext)
     {
@@ -22,46 +28,6 @@ public sealed class ScrutinStepDefinitions
         // method. 
 
         _scenarioContext.Pending();
-    }
-
-    [Given("the second number is (.*)")]
-    public void GivenTheSecondNumberIs(int number)
-    {
-        //TODO: implement arrange (precondition) logic
-        // For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata
-        // To use the multiline text or the table argument of the scenario,
-        // additional string/Table parameters can be defined on the step definition
-        // method. 
-
-        _scenarioContext.Pending();
-    }
-
-    [When("the two numbers are added")]
-    public void WhenTheTwoNumbersAreAdded()
-    {
-        //TODO: implement act (action) logic
-
-        _scenarioContext.Pending();
-    }
-
-    [Then("the result should be (.*)")]
-    public void ThenTheResultShouldBe(int result)
-    {
-        //TODO: implement assert (verification) logic
-
-        _scenarioContext.Pending();
-    }
-
-    [Given(@"I am a candidate")]
-    public void GivenIAmACandidate()
-    {
-        ScenarioContext.StepIsPending();
-    }
-
-    [When(@"I apply")]
-    public void WhenIApply()
-    {
-        ScenarioContext.StepIsPending();
     }
 
     [Then(@"the result is a candidate list")]
@@ -109,24 +75,33 @@ public sealed class ScrutinStepDefinitions
     [Given(@"I have a list of candidate")]
     public void GivenIHaveAListOfCandidate()
     {
-        ScenarioContext.StepIsPending();
+        candidates = new List<User>
+        {
+            new ("gerard"),
+            new ("jacque"),
+            new ("Rayane"),
+            new ("Enzo"),
+            new ("Swan")
+        };
     }
 
     [When(@"I start a scrutin")]
     public void WhenIStartAScrutin()
     {
-        ScenarioContext.StepIsPending();
+        var scrutinId = Scrutin.CreateScrutin(candidates, admin);
+        scrutin = Scrutin.getScrutin(scrutinId);
     }
 
     [Then(@"the scrutin start")]
     public void ThenTheScrutinStart()
     {
-        ScenarioContext.StepIsPending();
+        Assert.True(scrutin != null);
+        Assert.True(scrutin is Scrutin);
     }
 
     [Given(@"I am a administrator")]
     public void GivenIAmAAdministrator()
     {
-        ScenarioContext.StepIsPending();
+        admin = new User("admin");
     }
 }
