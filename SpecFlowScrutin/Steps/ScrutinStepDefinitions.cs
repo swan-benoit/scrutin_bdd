@@ -13,6 +13,7 @@ public sealed class ScrutinStepDefinitions
     private List<User> candidates;
     private Scrutin scrutin;
     private string message;
+    private User user;
 
     public ScrutinStepDefinitions(ScenarioContext scenarioContext)
     {
@@ -34,7 +35,7 @@ public sealed class ScrutinStepDefinitions
     [Then(@"the result is a candidate list")]
     public void ThenTheResultIsACandidateList()
     {
-        ScenarioContext.StepIsPending();
+        Assert.True(candidates.First() is User);
     }
 
     [Then(@"I am in the candidate list")]
@@ -46,13 +47,13 @@ public sealed class ScrutinStepDefinitions
     [Given(@"I am a user")]
     public void GivenIAmAUser()
     {
-        ScenarioContext.StepIsPending();
+        user = admin;
     }
 
     [When(@"i request the candidate list")]
     public void WhenIRequestTheCandidateList()
     {
-        ScenarioContext.StepIsPending();
+        candidates = scrutin.Candidates;
     }
 
     [When(@"i select a candidate")]
@@ -135,4 +136,13 @@ public sealed class ScrutinStepDefinitions
             admin
         };
     }
+
+    [Given(@"A scrutin is open")]
+    public void GivenAScrutinIsOpen ()
+    {
+        GivenIHaveAListOfCandidate();
+        GivenIAmAAdministrator();
+        WhenIStartAScrutin();
+    }
+    
 }

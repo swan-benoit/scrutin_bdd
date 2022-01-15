@@ -4,12 +4,17 @@ namespace Scrutin_bdd;
 
 public class Scrutin
 {
-    private List<User> Candidates { get; }
+    private List<User> _candidates;
+
+    public List<User> Candidates
+    {
+        get => _candidates;
+        set => _candidates = value;
+    }
     private Dictionary<User, int> Votes { get;}
     private int TotalVote { get;}
     private bool IsOpen { get; }
     private Guid Id { get;}
-
     private User Administrator { get; }
     public static List<Scrutin> Instances = new ();
     private Scrutin(List<User> candidates, User administrator)

@@ -29,6 +29,7 @@ Scenario: Cannot start a scrutin when list user < 2
 @candidateList
 Scenario: Obtain candidate list
 	Given I am a user
+	And A scrutin is open
 	When i request the candidate list
 	Then the result is a candidate list
 	
