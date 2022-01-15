@@ -134,4 +134,15 @@ public sealed class ScrutinStepDefinitions
         WhenIStartAScrutin();
     }
     
+    [When(@"I close the scrutin as a adminstrator")]
+    public void WhenICloseTheScrutin()
+    {
+        message = scrutin.close(admin);
+    }
+
+    [When(@"I close the scrutin as a user")]
+    public void WhenICloseTheScrutinAsAUser()
+    {
+        message = scrutin.close(user);
+    }
 }

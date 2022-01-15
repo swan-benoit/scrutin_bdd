@@ -47,3 +47,18 @@ Scenario: cannot vote
 	When i select a candidate
 	And i select a candidate 
 	Then I receive a message "A déjà voté"
+	
+	
+@closeScruttin
+Scenario: Close scrutin
+		Given I am a administrator
+		And A scrutin is open
+		When I close the scrutin as a adminstrator
+		Then I receive a message "Le scrutin est fermé"
+		
+@closeScruttinUser
+Scenario: Close scrutin when i'm not administrator
+		Given I am a user 
+		And A scrutin is open
+		When I close the scrutin as a user
+		Then I receive a message "Seulement l'administrateur peut fermer le scrutin"

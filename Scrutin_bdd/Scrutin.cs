@@ -14,7 +14,7 @@ public class Scrutin
     }
     private Dictionary<User, Tuple<int, List<User>>> Votes { get;}
     private int TotalVote { get; set; }
-    private bool IsOpen { get; }
+    private bool IsOpen { get; set; }
     private Guid Id { get;}
     private User Administrator { get; }
     public static List<Scrutin> Instances = new ();
@@ -92,5 +92,15 @@ public class Scrutin
             return null;
         }
     }
-    
+
+    public string close(User admin)
+    {
+        if (admin.Equals(Administrator))
+        {
+            IsOpen = false;
+            return "Le scrutin est fermé";
+        }
+
+        return "Seulement l'administrateur peut fermer le scrutin";
+    }
 }
