@@ -6,11 +6,11 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
 ***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**
 
 @candidateDeclaration
-Scenario: Declare a candidate
-	Given I am a candidate
-	When I apply
-	Then the result is a candidate list
-	And I am in the candidate list
+Scenario: Start a scrutin
+	Given I am a administrator 
+	And I have a list of candidate
+	When  I start a scrutin
+	Then the scrutin start
 	
 @candidateList
 Scenario: Obtain candidate list

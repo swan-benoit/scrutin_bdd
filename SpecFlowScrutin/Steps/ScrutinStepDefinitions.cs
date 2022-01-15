@@ -1,13 +1,13 @@
 ﻿namespace SpecFlowScrutin.Steps;
 
 [Binding]
-public sealed class CalculatorStepDefinitions
+public sealed class ScrutinStepDefinitions
 {
     // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
     private readonly ScenarioContext _scenarioContext;
 
-    public CalculatorStepDefinitions(ScenarioContext scenarioContext)
+    public ScrutinStepDefinitions(ScenarioContext scenarioContext)
     {
         _scenarioContext = scenarioContext;
     }
@@ -102,6 +102,30 @@ public sealed class CalculatorStepDefinitions
 
     [Then(@"i get notify that my vote is unsuccessful")]
     public void ThenIGetNotifyThatMyVoteIsUnsuccessful()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [Given(@"I have a list of candidate")]
+    public void GivenIHaveAListOfCandidate()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [When(@"I start a scrutin")]
+    public void WhenIStartAScrutin()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [Then(@"the scrutin start")]
+    public void ThenTheScrutinStart()
+    {
+        ScenarioContext.StepIsPending();
+    }
+
+    [Given(@"I am a administrator")]
+    public void GivenIAmAAdministrator()
     {
         ScenarioContext.StepIsPending();
     }
