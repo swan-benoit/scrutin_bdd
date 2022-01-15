@@ -12,7 +12,10 @@ public class Scrutin
         get => _candidates;
         set => _candidates = value;
     }
-    private Dictionary<User, Tuple<int, List<User>>> Votes { get;}
+    private Dictionary<
+        User,
+        Tuple<int, List<User>>
+    > Votes { get;}
     private int TotalVote { get; set; }
     private bool IsOpen { get; set; }
     private Guid Id { get;}
@@ -31,11 +34,15 @@ public class Scrutin
         Administrator = administrator;
         Administrator.ScrutinStrategy = new AdminScrutinStrategy(this);
         IsOpen = true;
-        Votes = new Dictionary<User, Tuple<int, List<User>>>();
-        foreach (var candidate in Candidates)
-        {
-            Votes.Add(candidate, Tuple.Create(0, new List<User>()));
-        }
+        Votes = InitVotes();
+    }
+
+    private Dictionary<User, Tuple<int, List<User>>> InitVotes()
+    {
+        return Candidates.Select(candidate => new KeyValuePair<User,Tuple<int, List<User>>>(
+                candidate,
+                Tuple.Create(0, new List<User>())))
+            .ToDictionary(x=>x.Key, x=>x.Value);
     }
 
     public static string CreateScrutin(List<User> candidates, User administrator)
@@ -65,13 +72,18 @@ public class Scrutin
         {
             return "A déjà voté";
         }
+        addVote(candidate, voter);
+        return "A voté";
+    }
+
+    private void addVote(User candidate, User voter)
+    {
         TotalVote++;
         var candidatTupple = Votes[candidate];
         var newVoteCount = candidatTupple.Item1 + 1;
         var ListVoter = candidatTupple.Item2;
         ListVoter.Add(voter);
         Votes[candidate] = Tuple.Create(newVoteCount, ListVoter);
-        return "A voté";
     }
 
     private bool hasAlreadyVote(User voter)
