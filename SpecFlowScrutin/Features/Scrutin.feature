@@ -64,7 +64,7 @@ Scenario: Close scrutin when i'm not administrator
 		Then I receive a message "Seulement l'administrateur peut fermer le scrutin"
 		
 @getWinnerResult
-	Scenario: Get result of scrutin
+	Scenario: Get Winner of scrutin
 		Given I am a user
 		And A scrutin is open
 		And Users vote for candidate

@@ -33,4 +33,6 @@ class AdminScrutinStrategy : ScrutinStrategy
            : "Je ne suis pas administrateur de ce scrutin";
     }
     
+    
+    
 }

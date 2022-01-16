@@ -14,3 +14,8 @@ class AbsoluteMajorityWinningStrategy : WinningStrategy
     
 }
 
+public enum WinningStrategyEnum
+{
+    AbsoluteMajority
+}
+

@@ -47,13 +47,13 @@ public class Scrutin
             .ToDictionary(x=>x.Key, x=>x.Value);
     }
 
-    public static string CreateScrutin(List<User> candidates, User administrator, string winningStrategy = "absolute_majority" )
+    public static string CreateScrutin(List<User> candidates, User administrator, WinningStrategyEnum winningStrategy = WinningStrategyEnum.AbsoluteMajority)
     {
         WinningStrategy winnerStrategyInstance;
 
         switch (winningStrategy)
         {
-            case "absolute_majority": winnerStrategyInstance = new AbsoluteMajorityWinningStrategy();
+            case WinningStrategyEnum.AbsoluteMajority: winnerStrategyInstance = new AbsoluteMajorityWinningStrategy();
                 break;
             default: return "strategy inconnu";
         }
