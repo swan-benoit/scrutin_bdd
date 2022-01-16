@@ -6,19 +6,19 @@ public class User
     public Guid Id { get;}
     public string Name { get; }
 
-    public ScrutinStrategy ScrutinStrategy;
+    public AdminStrategy AdminStrategy;
 
     public Scrutin Scrutin { get; set; }
     public User(string name)
     {
         Id = Guid.NewGuid(); 
         Name = name;
-        ScrutinStrategy = new DefaultScrutinStrategy();
+        AdminStrategy = new DefaultAdminStrategy();
     }
 
     public  String closeScrutin()
     {
-        return ScrutinStrategy.closeScrutin(Id);
+        return AdminStrategy.closeScrutin(Id);
     }
 
 }

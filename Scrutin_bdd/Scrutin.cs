@@ -34,7 +34,7 @@ public class Scrutin
         Id = Guid.NewGuid();
         Candidates = candidates;
         Administrator = administrator;
-        Administrator.ScrutinStrategy = new AdminScrutinStrategy(this);
+        Administrator.AdminStrategy = new AdminScrutinStrategy(this);
         IsOpen = true;
         Votes = InitVotes();
     }

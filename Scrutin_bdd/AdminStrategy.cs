@@ -1,12 +1,12 @@
 namespace Scrutin_bdd;
 
-public interface ScrutinStrategy
+public interface AdminStrategy
 {
     public Scrutin Scrutin { get; set; }
     public String closeScrutin(Guid userId);
 }
 
-class DefaultScrutinStrategy : ScrutinStrategy
+class DefaultAdminStrategy : AdminStrategy
 {
     public Scrutin Scrutin { get; set; }
 
@@ -17,7 +17,7 @@ class DefaultScrutinStrategy : ScrutinStrategy
     
 }
 
-class AdminScrutinStrategy : ScrutinStrategy
+class AdminScrutinStrategy : AdminStrategy
 {
     public Scrutin Scrutin { get; set; }
 
