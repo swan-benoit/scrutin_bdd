@@ -20,6 +20,7 @@ public class Scrutin
     private bool IsOpen { get; set; }
     private Guid Id { get;}
     private User _administator;
+    private WinningStrategy _winningStrategy;
 
     public User Administrator
     {
@@ -27,8 +28,9 @@ public class Scrutin
         set => _administator = value;
     }
     public static List<Scrutin> Instances = new ();
-    private Scrutin(List<User> candidates, User administrator)
+    private Scrutin(List<User> candidates, User administrator, WinningStrategy winningStrategy)
     {
+        _winningStrategy = winningStrategy;
         Id = Guid.NewGuid();
         Candidates = candidates;
         Administrator = administrator;
@@ -45,8 +47,16 @@ public class Scrutin
             .ToDictionary(x=>x.Key, x=>x.Value);
     }
 
-    public static string CreateScrutin(List<User> candidates, User administrator)
+    public static string CreateScrutin(List<User> candidates, User administrator, string winningStrategy = "absolute_majority" )
     {
+        WinningStrategy winnerStrategyInstance;
+
+        switch (winningStrategy)
+        {
+            case "absolute_majority": winnerStrategyInstance = new AbsoluteMajorityWinningStrategy();
+                break;
+            default: return "strategy inconnu";
+        }
         if (candidates.Count < 2)
         {
             return "Scrutin must have at least 2 candidates";
@@ -57,7 +67,7 @@ public class Scrutin
             return "Administrator cannot be also candidate";
         }
 
-        var scrutin = new Scrutin(candidates, administrator);
+        var scrutin = new Scrutin(candidates, administrator, winnerStrategyInstance);
         Instances.Add(scrutin);
         return scrutin.Id.ToString();
     }
@@ -99,7 +109,7 @@ public class Scrutin
         return alreadyVote;
     }
 
-    public static Scrutin getScrutin(String id)
+    public static Scrutin GetScrutin(String id)
     {
         try
         {
@@ -111,7 +121,10 @@ public class Scrutin
             return null;
         }
     }
-
+    public String GetWinner()
+    {
+        return "Le gagnant est " + _winningStrategy.GetWinner(Votes);
+    }
     public bool close(String adminId)
     {
         if (adminId == Administrator.Id.ToString())

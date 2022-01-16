@@ -455,6 +455,76 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="Get result of scrutin")]
+        [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
+        [Xunit.TraitAttribute("Description", "Get result of scrutin")]
+        [Xunit.TraitAttribute("Category", "getWinnerResult")]
+        public virtual void GetResultOfScrutin()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "getWinnerResult"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get result of scrutin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 67
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 68
+  testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 69
+  testRunner.And("A scrutin is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "voter",
+                            "candidate"});
+                table1.AddRow(new string[] {
+                            "Geraldine",
+                            "Swan"});
+                table1.AddRow(new string[] {
+                            "Enzo",
+                            "Swan"});
+                table1.AddRow(new string[] {
+                            "Rayane",
+                            "Enzo"});
+                table1.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table1.AddRow(new string[] {
+                            "John",
+                            "Rayane"});
+#line 70
+  testRunner.And("Users vote for candidate", ((string)(null)), table1, "And ");
+#line hidden
+#line 77
+  testRunner.When("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 78
+  testRunner.And("I ask for the winner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 79
+  testRunner.Then("I receive a message \"Le gagnant est Swan\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable

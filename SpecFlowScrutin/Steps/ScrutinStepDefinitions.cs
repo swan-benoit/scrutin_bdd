@@ -80,7 +80,7 @@ public sealed class ScrutinStepDefinitions
     public void WhenIStartAScrutin()
     {
         message = Scrutin.CreateScrutin(candidates, admin);
-        scrutin = Scrutin.getScrutin(message);
+        scrutin = Scrutin.GetScrutin(message);
         if (scrutin is Scrutin)
         {
             admin = scrutin.Administrator;
@@ -150,5 +150,24 @@ public sealed class ScrutinStepDefinitions
     {
         message = user.closeScrutin();
         // message = scrutin.close(user);
+    }
+
+    [Given(@"Users vote for candidate")]
+    public void GivenUsersVoteForCandidate(Table table)
+    {
+        foreach (var row in table.Rows)
+        {
+            var voter = row[0];
+            var candidatName = row[1];
+            var user1 = new User(voter);
+            var candidat = scrutin.Candidates.Where(candidat => candidat.Name == candidatName).First();
+            scrutin.Vote(candidat, user1);
+        }
+    }
+
+    [When(@"I ask for the winner")]
+    public void WhenIAskForTheWinner()
+    {
+        message = scrutin.GetWinner();
     }
 }

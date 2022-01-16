@@ -62,3 +62,18 @@ Scenario: Close scrutin when i'm not administrator
 		And A scrutin is open
 		When I close the scrutin as a user
 		Then I receive a message "Seulement l'administrateur peut fermer le scrutin"
+		
+@getWinnerResult
+	Scenario: Get result of scrutin
+		Given I am a user
+		And A scrutin is open
+		And Users vote for candidate
+		| voter     | candidate |
+		| Geraldine | Swan      |
+		| Enzo      | Swan      |
+		| Rayane    | Enzo      |
+		| gerard    | Swan      |
+		| John      | Rayane|
+		When I close the scrutin as a adminstrator
+		And I ask for the winner
+		Then I receive a message "Le gagnant est Swan"
