@@ -138,21 +138,19 @@ public sealed class ScrutinStepDefinitions
         WhenIStartAScrutin();
     }
     
-    [When(@"I close the scrutin as a adminstrator")]
+    [When(@"I close the scrutin as a adminstrator"), Given(@"I close the scrutin as a adminstrator")]
     public void WhenICloseTheScrutin()
     {
         message = admin.closeScrutin();
-        // message = scrutin.close(admin);
     }
 
     [When(@"I close the scrutin as a user")]
     public void WhenICloseTheScrutinAsAUser()
     {
         message = user.closeScrutin();
-        // message = scrutin.close(user);
     }
 
-    [Given(@"Users vote for candidate")]
+    [Given(@"Users vote for candidate"), When("Users vote for candidate")]
     public void GivenUsersVoteForCandidate(Table table)
     {
         foreach (var row in table.Rows)
@@ -176,4 +174,23 @@ public sealed class ScrutinStepDefinitions
     {
         message = scrutin.GetResult();
     }
+
+    [Then(@"I receive a multilinemessage")]
+    public void ThenIReceiveAMultilinemessage(string multilineText)
+    {
+        ThenIReceiveAMessage(multilineText);
+    }
+
+    [Then(@"has (.*) candidate")]
+    public void ThenHasCandidate(int numberCandidate)
+    {
+        Assert.Equal(numberCandidate, candidates.Count);
+    }
+
+    [Then(@"the scrutin is closed")]
+    public void ThenTheScrutinIsClosed()
+    {
+        Assert.False(scrutin.IsClosed());
+    }
+    
 }

@@ -91,7 +91,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
         Then I receive a message "Il n'y a aucun gagnant"
 
     @getResult
-    Scenario: Get Result of scrutin
+    Scenario: Get Result of scrutin du premier tour
         Given I am a user
         And A scrutin is open
         And Users vote for candidate
@@ -103,4 +103,134 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
           | John      | Rayane    |
         When I close the scrutin as a adminstrator
         And I ask for the result
-        Then I receive a message "Les resultats sont:  Swan: 60% Rayane: 20% Enzo: 20% gerard: 0% jacque: 0%"
+        Then I receive a message "Les resultats du tour 1 sont:  Swan: 60% Rayane: 20% Enzo: 20% gerard: 0% jacque: 0%"
+
+    Scenario: Get the winner of scrutin du premier tour if more than 50%
+        Given I am a user
+        And A scrutin is open
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Swan      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Rayane    |
+        When I close the scrutin as a adminstrator
+        And I ask for the winner
+        Then I receive a message "Le gagnant est Swan"
+
+    Scenario: Cannot vote if 1st decipher a winner
+        Given I am a user
+        And A scrutin is open
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Swan      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Rayane    |
+        And I close the scrutin as a adminstrator
+        When Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+        Then I receive a message "Le scrutin est fermé"
+
+    Scenario: Get the winner of scrutin du premier tour if less than 50%
+        Given I am a user
+        And A scrutin is open
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Enzo      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Rayane    |
+        When I close the scrutin as a adminstrator
+        And I ask for the winner
+        Then I receive a message "Il n'y a aucun gagnant"
+
+    Scenario: Get Result of scrutin du second tour
+        Given I am a user
+        And A scrutin is open
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Enzo      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Rayane    |
+        And I close the scrutin as a adminstrator
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Enzo      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Enzo      |
+        When I close the scrutin as a adminstrator
+        And I ask for the result
+        Then I receive a multilinemessage
+        """
+        Les resultats du tour 1 sont:  Swan: 40% Enzo: '40%  Rayane: 20% gerard: 0% jacque: 0% 
+        Les resultats du tour 2 sont: Enzo: 60% Swan: 40% 
+        """
+
+    Scenario: Get winner of scrutin du second tour
+        Given I am a user
+        And A scrutin is open
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Enzo      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Rayane    |
+        And I close the scrutin as a adminstrator
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Enzo      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Enzo      |
+        When I close the scrutin as a adminstrator
+        And I ask for the winner
+        Then I receive a message "Le gagnant est Enzo"
+        
+    Scenario: On first round equality tree candidate are on second round
+        Given I am a user
+        And A scrutin is open
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Enzo      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Rayane    |
+          | John      | Rayane    |
+        And I close the scrutin as a adminstrator
+        When i request the candidate list
+        Then the result is a candidate list
+        And has 3 candidate
+        
+    Scenario: Get winner of scrutin du second tour when second round equality
+        Given I am a user
+        And A scrutin is open
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Enzo      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Rayane    |
+        And I close the scrutin as a adminstrator
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Enzo      |
+        When I close the scrutin as a adminstrator
+        And I ask for the winner
+        Then I receive a message "Il n'y a aucun gagnant"
+        And the scrutin is closed

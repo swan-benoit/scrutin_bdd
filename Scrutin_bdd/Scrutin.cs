@@ -141,4 +141,9 @@ public class Scrutin
         var lesResultatsSont = "Les resultats sont: " + _winningStrategy.GetResult(Votes, TotalVote);
         return lesResultatsSont;
     }
+
+    public bool IsClosed()
+    {
+        return !IsOpen;
+    }
 }
