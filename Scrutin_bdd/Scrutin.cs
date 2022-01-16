@@ -123,7 +123,8 @@ public class Scrutin
     }
     public String GetWinner()
     {
-        return "Le gagnant est " + _winningStrategy.GetWinner(Votes);
+        var winner = _winningStrategy.GetWinner(Votes, TotalVote);
+        return winner == null ? "Il n'y a aucun gagnant": "Le gagnant est " + winner;
     }
     public bool close(String adminId)
     {
