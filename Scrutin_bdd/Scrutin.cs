@@ -134,4 +134,10 @@ public class Scrutin
         }
         return false;
     }
+
+    public string GetResult()
+    {
+        var lesResultatsSont = "Les resultats sont: " + _winningStrategy.GetResult(Votes, TotalVote);
+        return lesResultatsSont;
+    }
 }

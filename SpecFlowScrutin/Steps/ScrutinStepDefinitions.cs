@@ -170,4 +170,10 @@ public sealed class ScrutinStepDefinitions
     {
         message = scrutin.GetWinner();
     }
+
+    [When(@"I ask for the result")]
+    public void WhenIAskForTheResult()
+    {
+        message = scrutin.GetResult();
+    }
 }

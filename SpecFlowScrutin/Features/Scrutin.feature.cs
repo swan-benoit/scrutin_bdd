@@ -455,16 +455,16 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Get result of scrutin")]
+        [Xunit.SkippableFactAttribute(DisplayName="Get Winner of scrutin")]
         [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
-        [Xunit.TraitAttribute("Description", "Get result of scrutin")]
+        [Xunit.TraitAttribute("Description", "Get Winner of scrutin")]
         [Xunit.TraitAttribute("Category", "getWinnerResult")]
-        public virtual void GetResultOfScrutin()
+        public virtual void GetWinnerOfScrutin()
         {
             string[] tagsOfScenario = new string[] {
                     "getWinnerResult"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get result of scrutin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Winner of scrutin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 67
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -520,6 +520,77 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 79
   testRunner.Then("I receive a message \"Le gagnant est Swan\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Get Result of scrutin")]
+        [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
+        [Xunit.TraitAttribute("Description", "Get Result of scrutin")]
+        [Xunit.TraitAttribute("Category", "getResult")]
+        public virtual void GetResultOfScrutin()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "getResult"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Result of scrutin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 82
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 83
+ testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 84
+ testRunner.And("A scrutin is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "voter",
+                            "candidate"});
+                table2.AddRow(new string[] {
+                            "Geraldine",
+                            "Swan"});
+                table2.AddRow(new string[] {
+                            "Enzo",
+                            "Swan"});
+                table2.AddRow(new string[] {
+                            "Rayane",
+                            "Enzo"});
+                table2.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table2.AddRow(new string[] {
+                            "John",
+                            "Rayane"});
+#line 85
+ testRunner.And("Users vote for candidate", ((string)(null)), table2, "And ");
+#line hidden
+#line 92
+ testRunner.When("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 93
+ testRunner.And("I ask for the result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 94
+ testRunner.Then("I receive a message \"Les resultats sont:  Swan: 60% Rayane: 20% Enzo: 20% gerard:" +
+                        " 0% jacque: 0%\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
