@@ -103,7 +103,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
           | John      | Rayane    |
         When I close the scrutin as a adminstrator
         And I ask for the result
-        Then I receive a message "Les resultats du tour 1 sont:  Swan: 60% Rayane: 20% Enzo: 20% gerard: 0% jacque: 0%"
+        Then I receive a message "--Les resultats du tour 1 sont: Swan: 60% Rayane: 20% Enzo: 20% gerard: 0% jacque: 0%--"
 
     Scenario: Get the winner of scrutin du premier tour if more than 50%
         Given I am a user
@@ -171,8 +171,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
         And I ask for the result
         Then I receive a multilinemessage
         """
-        Les resultats du tour 1 sont:  Swan: 40% Enzo: '40%  Rayane: 20% gerard: 0% jacque: 0% 
-        Les resultats du tour 2 sont: Enzo: 60% Swan: 40% 
+        --Les resultats du tour 1 sont: Enzo: 40% Swan: 40% Rayane: 20% gerard: 0% jacque: 0%----Les resultats du tour 2 sont: Enzo: 60% Swan: 40%--
         """
 
     Scenario: Get winner of scrutin du second tour

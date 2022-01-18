@@ -28,7 +28,7 @@ class AdminScrutinStrategy : AdminStrategy
     }
     public string closeScrutin(Guid userId)
     {
-       return Scrutin.close(userId.ToString())
+       return Scrutin.next(userId.ToString())
            ? "Le scrutin est fermé"
            : "Je ne suis pas administrateur de ce scrutin";
     }

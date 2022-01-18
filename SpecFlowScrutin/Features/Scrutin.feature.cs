@@ -653,8 +653,8 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
         testRunner.And("I ask for the result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 106
-        testRunner.Then("I receive a message \"Les resultats du tour 1 sont:  Swan: 60% Rayane: 20% Enzo: 2" +
-                        "0% gerard: 0% jacque: 0%\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("I receive a message \"--Les resultats du tour 1 sont: Swan: 60% Rayane: 20% Enzo: " +
+                        "20% gerard: 0% jacque: 0%--\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -956,8 +956,8 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
         testRunner.And("I ask for the result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 172
-        testRunner.Then("I receive a multilinemessage", "Les resultats du tour 1 sont:  Swan: 40% Enzo: \'40%  Rayane: 20% gerard: 0% jacqu" +
-                        "e: 0% \nLes resultats du tour 2 sont: Enzo: 60% Swan: 40% ", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("I receive a multilinemessage", "--Les resultats du tour 1 sont: Enzo: 40% Swan: 40% Rayane: 20% gerard: 0% jacque" +
+                        ": 0%----Les resultats du tour 2 sont: Enzo: 60% Swan: 40%--", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -971,7 +971,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get winner of scrutin du second tour", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 178
+#line 177
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -991,10 +991,10 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
             else
             {
                 this.ScenarioStart();
-#line 179
+#line 178
         testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 180
+#line 179
         testRunner.And("A scrutin is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1015,10 +1015,10 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
                 table10.AddRow(new string[] {
                             "John",
                             "Rayane"});
-#line 181
+#line 180
         testRunner.And("Users vote for candidate", ((string)(null)), table10, "And ");
 #line hidden
-#line 188
+#line 187
         testRunner.And("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1039,16 +1039,16 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
                 table11.AddRow(new string[] {
                             "John",
                             "Enzo"});
-#line 189
+#line 188
         testRunner.And("Users vote for candidate", ((string)(null)), table11, "And ");
 #line hidden
-#line 196
+#line 195
         testRunner.When("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 197
+#line 196
         testRunner.And("I ask for the winner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 198
+#line 197
         testRunner.Then("I receive a message \"Le gagnant est Enzo\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -1063,7 +1063,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("On first round equality tree candidate are on second round", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 200
+#line 199
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1083,10 +1083,10 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
             else
             {
                 this.ScenarioStart();
-#line 201
+#line 200
         testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 202
+#line 201
         testRunner.And("A scrutin is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1110,20 +1110,112 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
                 table12.AddRow(new string[] {
                             "John",
                             "Rayane"});
-#line 203
+#line 202
         testRunner.And("Users vote for candidate", ((string)(null)), table12, "And ");
 #line hidden
-#line 211
+#line 210
         testRunner.And("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 212
+#line 211
         testRunner.When("i request the candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 213
+#line 212
         testRunner.Then("the result is a candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 214
+#line 213
         testRunner.And("has 3 candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Get winner of scrutin du second tour when second round equality")]
+        [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
+        [Xunit.TraitAttribute("Description", "Get winner of scrutin du second tour when second round equality")]
+        public virtual void GetWinnerOfScrutinDuSecondTourWhenSecondRoundEquality()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get winner of scrutin du second tour when second round equality", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 215
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 216
+        testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 217
+        testRunner.And("A scrutin is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "voter",
+                            "candidate"});
+                table13.AddRow(new string[] {
+                            "Geraldine",
+                            "Swan"});
+                table13.AddRow(new string[] {
+                            "Enzo",
+                            "Enzo"});
+                table13.AddRow(new string[] {
+                            "Rayane",
+                            "Enzo"});
+                table13.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table13.AddRow(new string[] {
+                            "John",
+                            "Rayane"});
+#line 218
+        testRunner.And("Users vote for candidate", ((string)(null)), table13, "And ");
+#line hidden
+#line 225
+        testRunner.And("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                            "voter",
+                            "candidate"});
+                table14.AddRow(new string[] {
+                            "Geraldine",
+                            "Swan"});
+                table14.AddRow(new string[] {
+                            "Rayane",
+                            "Enzo"});
+                table14.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table14.AddRow(new string[] {
+                            "John",
+                            "Enzo"});
+#line 226
+        testRunner.And("Users vote for candidate", ((string)(null)), table14, "And ");
+#line hidden
+#line 232
+        testRunner.When("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 233
+        testRunner.And("I ask for the winner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 234
+        testRunner.Then("I receive a message \"Il n\'y a aucun gagnant\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 235
+        testRunner.And("the scrutin is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -53,7 +53,7 @@ public sealed class ScrutinStepDefinitions
     [When(@"i request the candidate list")]
     public void WhenIRequestTheCandidateList()
     {
-        candidates = scrutin.Candidates;
+        candidates = scrutin.Candidates[1];
     }
 
     [When(@"i select a candidate")]
@@ -158,7 +158,7 @@ public sealed class ScrutinStepDefinitions
             var voter = row[0];
             var candidatName = row[1];
             var user1 = new User(voter);
-            var candidat = scrutin.Candidates.Where(candidat => candidat.Name == candidatName).First();
+            var candidat = scrutin.Candidates[1].Where(candidat => candidat.Name == candidatName).First();
             scrutin.Vote(candidat, user1);
         }
     }
