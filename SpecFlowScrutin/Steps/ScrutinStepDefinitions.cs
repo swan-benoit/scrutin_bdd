@@ -50,10 +50,11 @@ public sealed class ScrutinStepDefinitions
         user = new User("Marie");
     }
 
-    [When(@"i request the candidate list")]
-    public void WhenIRequestTheCandidateList()
+
+    [When(@"i request the candidate list for (.*) round")]
+    public void WhenIRequestTheCandidateListForRound(int p0)
     {
-        candidates = scrutin.Candidates[1];
+        candidates = scrutin.Candidates[p0];
     }
 
     [When(@"i select a candidate")]
@@ -61,18 +62,18 @@ public sealed class ScrutinStepDefinitions
     {
         message = scrutin.Vote(candidates.First(), user);
     }
-    
+
 
     [Given(@"I have a list of candidate")]
     public void GivenIHaveAListOfCandidate()
     {
         candidates = new List<User>
         {
-            new ("gerard"),
-            new ("jacque"),
-            new ("Rayane"),
-            new ("Enzo"),
-            new ("Swan")
+            new("gerard"),
+            new("jacque"),
+            new("Rayane"),
+            new("Enzo"),
+            new("Swan")
         };
     }
 
@@ -105,7 +106,7 @@ public sealed class ScrutinStepDefinitions
     {
         candidates = new List<User>
         {
-            new ("gerard"),
+            new("gerard"),
         };
     }
 
@@ -113,7 +114,6 @@ public sealed class ScrutinStepDefinitions
     public void ThenIReceiveAMessage(string p0)
     {
         Assert.Equal(p0, message);
-        
     }
 
     [Given(@"I have a list of candidate with the administrator in it")]
@@ -121,23 +121,23 @@ public sealed class ScrutinStepDefinitions
     {
         candidates = new List<User>
         {
-            new ("gerard"),
-            new ("jacque"),
-            new ("Rayane"),
-            new ("Enzo"),
-            new ("Swan"),
+            new("gerard"),
+            new("jacque"),
+            new("Rayane"),
+            new("Enzo"),
+            new("Swan"),
             admin
         };
     }
 
     [Given(@"A scrutin is open")]
-    public void GivenAScrutinIsOpen ()
+    public void GivenAScrutinIsOpen()
     {
         GivenIHaveAListOfCandidate();
         GivenIAmAAdministrator();
         WhenIStartAScrutin();
     }
-    
+
     [When(@"I close the scrutin as a adminstrator"), Given(@"I close the scrutin as a adminstrator")]
     public void WhenICloseTheScrutin()
     {
@@ -192,5 +192,4 @@ public sealed class ScrutinStepDefinitions
     {
         Assert.False(scrutin.IsClosed());
     }
-    
 }

@@ -30,7 +30,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
     Scenario: Obtain candidate list
         Given I am a user
         And A scrutin is open
-        When i request the candidate list
+        When i request the candidate list for 1 round
         Then the result is a candidate list
 
     @vote
@@ -208,7 +208,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
           | John      | Rayane    |
           | John      | Rayane    |
         And I close the scrutin as a adminstrator
-        When i request the candidate list
+        When i request the candidate list for 2 round
         Then the result is a candidate list
         And has 3 candidate
         

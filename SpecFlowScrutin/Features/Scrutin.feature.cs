@@ -259,7 +259,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
         testRunner.And("A scrutin is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 33
-        testRunner.When("i request the candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("i request the candidate list for 1 round", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 34
         testRunner.Then("the result is a candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1117,7 +1117,7 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
         testRunner.And("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 211
-        testRunner.When("i request the candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("i request the candidate list for 2 round", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 212
         testRunner.Then("the result is a candidate list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -4,18 +4,20 @@ public class Scrutin
 {
     private Dictionary<int, List<User>> _candidates;
 
-    public Dictionary<int,List<User>> Candidates
+    public Dictionary<int, List<User>> Candidates
     {
         get => _candidates;
         set => _candidates = value;
     }
-    private Dictionary<int,Dictionary<
+
+    private Dictionary<int, Dictionary<
         User,
         Tuple<int, List<User>>
-    >> Votes { get;}
-    private Dictionary<int,int> TotalVote { get; set; }
+    >> Votes { get; }
+
+    private Dictionary<int, int> TotalVote { get; set; }
     private bool IsOpen { get; set; }
-    private Guid Id { get;}
+    private Guid Id { get; }
     private User _administator;
     private WinningStrategy _winningStrategy;
 
@@ -24,7 +26,8 @@ public class Scrutin
         get => _administator;
         set => _administator = value;
     }
-    public static List<Scrutin> Instances = new ();
+
+    public static List<Scrutin> Instances = new();
     private int _totalRound;
     public int CurrentRound = 1;
 
@@ -33,7 +36,7 @@ public class Scrutin
         _winningStrategy = winningStrategy;
         Id = Guid.NewGuid();
         Candidates = new Dictionary<int, List<User>>();
-        Candidates.Add(1,candidates);
+        Candidates.Add(1, candidates);
         Administrator = administrator;
         Administrator.AdminStrategy = new AdminScrutinStrategy(this);
         IsOpen = true;
@@ -42,35 +45,30 @@ public class Scrutin
         {
             [1] = initVotesTemplate(1)
         };
-        TotalVote = new Dictionary<int, int> { [1] = 0 };
+        TotalVote = new Dictionary<int, int> {[1] = 0};
     }
-
-    // private Dictionary<int,Dictionary<User, Tuple<int, List<User>>>> InitVotes()
-    // {
-        // var votesTemplate = initVotesTemplate(1);
-
-        // return new Dictionary<int, Dictionary<User, Tuple<int, List<User>>>>() { [1] = votesTemplate };
-        // return Enumerable.Range(1, _round).ToDictionary(i => i, i => new Dictionary<User, Tuple<int, List<User>>>(votesTemplate));
-    // }
 
     private Dictionary<User, Tuple<int, List<User>>> initVotesTemplate(int round)
     {
-        return Candidates[round].Select(candidate => new KeyValuePair<User,Tuple<int, List<User>>>(
+        return Candidates[round].Select(candidate => new KeyValuePair<User, Tuple<int, List<User>>>(
                 candidate,
                 Tuple.Create(0, new List<User>())))
-            .ToDictionary(x=>x.Key, x=>x.Value);
+            .ToDictionary(x => x.Key, x => x.Value);
     }
 
-    public static string CreateScrutin(List<User> candidates, User administrator, WinningStrategyEnum winningStrategy = WinningStrategyEnum.AbsoluteMajority)
+    public static string CreateScrutin(List<User> candidates, User administrator,
+        WinningStrategyEnum winningStrategy = WinningStrategyEnum.AbsoluteMajority)
     {
         WinningStrategy winnerStrategyInstance;
 
         switch (winningStrategy)
         {
-            case WinningStrategyEnum.AbsoluteMajority: winnerStrategyInstance = new AbsoluteMajorityWinningStrategy();
+            case WinningStrategyEnum.AbsoluteMajority:
+                winnerStrategyInstance = new AbsoluteMajorityWinningStrategy();
                 break;
             default: return "strategy inconnu";
         }
+
         if (candidates.Count < 2)
         {
             return "Scrutin must have at least 2 candidates";
@@ -92,10 +90,12 @@ public class Scrutin
         {
             return "Le scrutin est fermé";
         }
+
         if (hasAlreadyVote(voter))
         {
             return "A déjà voté";
         }
+
         addVote(candidate, voter);
         return "A voté";
     }
@@ -120,6 +120,7 @@ public class Scrutin
                 return true;
             }
         }
+
         return alreadyVote;
     }
 
@@ -135,31 +136,37 @@ public class Scrutin
             return null;
         }
     }
+
     public String GetWinner()
     {
-        var winner = _winningStrategy.GetPodium(Votes[_totalRound])
-            .FirstOrDefault(new User(null)).Name;
-        return winner == null ? "Il n'y a aucun gagnant": "Le gagnant est " + winner;
+        var winner = _winningStrategy.GetWinner(Votes[CurrentRound], TotalVote[CurrentRound]);
+        return winner == null ? "Il n'y a aucun gagnant" : "Le gagnant est " + winner;
     }
+
     public bool next(String adminId)
     {
         if (adminId == Administrator.Id.ToString())
         {
-            if (CurrentRound == _totalRound)
+            if (CurrentRound == _totalRound ||
+                _winningStrategy.GetWinner(Votes[CurrentRound], TotalVote[CurrentRound]) != null)
             {
                 IsOpen = false;
-                return true;
             }
-            nextRound();
+            else
+            {
+                nextRound();
+            }
+
             return true;
         }
+
         return false;
     }
 
     private void nextRound()
     {
         CurrentRound++;
-        Candidates[CurrentRound] = _winningStrategy.GetPodium(Votes[CurrentRound - 1]);
+        Candidates[CurrentRound] = _winningStrategy.GetPodium(Votes[CurrentRound - 1], TotalVote[CurrentRound - 1]);
         Votes[CurrentRound] = initVotesTemplate(CurrentRound);
         TotalVote[CurrentRound] = 0;
     }
@@ -169,8 +176,10 @@ public class Scrutin
         var message = "";
         foreach (var round in Enumerable.Range(1, CurrentRound))
         {
-            message +="--"+"Les resultats du tour " + round + " sont:" + _winningStrategy.GetFullResults(Votes[round], TotalVote[round]) + "--";
+            message += "--" + "Les resultats du tour " + round + " sont:" +
+                       _winningStrategy.GetFullResults(Votes[round], TotalVote[round]) + "--";
         }
+
         return message;
     }
 
