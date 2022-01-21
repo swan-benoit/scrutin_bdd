@@ -16,6 +16,7 @@ class AbsoluteMajorityWinningStrategy : WinningStrategy
     {
         return GetPodiumWithResult(dictionary, totalVote)
             .Where(pair => pair.Value > 50)
+            .Where(pair => !pair.Key.Name.Equals("blank_vote"))
             .Select(pair => pair.Key)
             .FirstOrDefault(new User(null))
             .Name;

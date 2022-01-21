@@ -30,9 +30,11 @@ public class Scrutin
     public static List<Scrutin> Instances = new();
     private int _totalRound;
     public int CurrentRound = 1;
+    private User _blankVoteUser = new User("blank_vote");
 
     private Scrutin(List<User> candidates, User administrator, WinningStrategy winningStrategy, int totalRound = 2)
     {
+        candidates.Add(_blankVoteUser);
         _winningStrategy = winningStrategy;
         Id = Guid.NewGuid();
         Candidates = new Dictionary<int, List<User>>();
@@ -102,7 +104,11 @@ public class Scrutin
 
     private void addVote(User candidate, User voter)
     {
-        TotalVote[CurrentRound]++;
+        if (!candidate.Equals(_blankVoteUser))
+        {
+            TotalVote[CurrentRound]++;
+        }
+
         var candidatTupple = Votes[CurrentRound][candidate];
         var newVoteCount = candidatTupple.Item1 + 1;
         var ListVoter = candidatTupple.Item2;
@@ -167,9 +173,15 @@ public class Scrutin
     {
         CurrentRound++;
         Candidates[CurrentRound] = _winningStrategy.GetPodium(Votes[CurrentRound - 1], TotalVote[CurrentRound - 1]);
+        if (!Candidates[CurrentRound].Exists(user => user.Equals(_blankVoteUser)))
+        {
+            Candidates[CurrentRound].Add(_blankVoteUser);
+        }
+
         Votes[CurrentRound] = initVotesTemplate(CurrentRound);
         TotalVote[CurrentRound] = 0;
     }
+
 
     public string GetResult()
     {
