@@ -2,7 +2,7 @@ namespace Scrutin_bdd;
 
 public interface WinningStrategy
 {
-    public string GetWinner(Dictionary<User, Tuple<int, List<User>>> dictionary, int totalVote);
+    public string? GetWinner(Dictionary<User, Tuple<int, List<User>>> dictionary, int totalVote);
     public string GetFullResults(Dictionary<User, Tuple<int, List<User>>> dictionary, int totalVote);
     public List<User> GetPodium(Dictionary<User, Tuple<int, List<User>>> dictionary, int totalVote);
 

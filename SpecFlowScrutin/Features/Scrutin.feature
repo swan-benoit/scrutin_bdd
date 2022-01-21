@@ -232,4 +232,3 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
         When I close the scrutin as a adminstrator
         And I ask for the winner
         Then I receive a message "Il n'y a aucun gagnant"
-        And the scrutin is closed

@@ -1214,9 +1214,6 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
 #line 234
         testRunner.Then("I receive a message \"Il n\'y a aucun gagnant\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 235
-        testRunner.And("the scrutin is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
             }
             this.ScenarioCleanup();
         }
