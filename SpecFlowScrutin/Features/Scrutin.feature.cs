@@ -1558,6 +1558,212 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
             this.ScenarioCleanup();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="Get winner of scrutin du second tour whith dictatorial scrutin")]
+        [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
+        [Xunit.TraitAttribute("Description", "Get winner of scrutin du second tour whith dictatorial scrutin")]
+        public virtual void GetWinnerOfScrutinDuSecondTourWhithDictatorialScrutin()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get winner of scrutin du second tour whith dictatorial scrutin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 323
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 324
+        testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 325
+        testRunner.And("A dictatorial scrutin is open for \"Mobutu\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                            "voter",
+                            "candidate"});
+                table21.AddRow(new string[] {
+                            "Geraldine",
+                            "Swan"});
+                table21.AddRow(new string[] {
+                            "Enzo",
+                            "Enzo"});
+                table21.AddRow(new string[] {
+                            "Enzo",
+                            "Enzo"});
+                table21.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table21.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table21.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table21.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table21.AddRow(new string[] {
+                            "John",
+                            "Rayane"});
+#line 326
+        testRunner.And("Users vote for candidate", ((string)(null)), table21, "And ");
+#line hidden
+#line 336
+        testRunner.And("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                            "voter",
+                            "candidate"});
+                table22.AddRow(new string[] {
+                            "Geraldine",
+                            "Swan"});
+                table22.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table22.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table22.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table22.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table22.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table22.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table22.AddRow(new string[] {
+                            "Rayane",
+                            "blank_vote"});
+                table22.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table22.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table22.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table22.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table22.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table22.AddRow(new string[] {
+                            "Enzo",
+                            "Enzo"});
+                table22.AddRow(new string[] {
+                            "Rayane",
+                            "Enzo"});
+                table22.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table22.AddRow(new string[] {
+                            "John",
+                            "Enzo"});
+#line 337
+        testRunner.And("Users vote for candidate", ((string)(null)), table22, "And ");
+#line hidden
+#line 356
+        testRunner.When("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 357
+        testRunner.And("I ask for the winner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 358
+        testRunner.Then("I receive a message \"Le gagnant est Mobutu\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Get Result of scrutin du second tour for dictatorial result")]
+        [Xunit.TraitAttribute("FeatureTitle", "Scrutin")]
+        [Xunit.TraitAttribute("Description", "Get Result of scrutin du second tour for dictatorial result")]
+        public virtual void GetResultOfScrutinDuSecondTourForDictatorialResult()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Result of scrutin du second tour for dictatorial result", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 360
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 361
+        testRunner.Given("I am a user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 362
+        testRunner.And("A dictatorial scrutin is open for \"Mobutu\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                            "voter",
+                            "candidate"});
+                table23.AddRow(new string[] {
+                            "Geraldine",
+                            "Swan"});
+                table23.AddRow(new string[] {
+                            "Enzo",
+                            "Enzo"});
+                table23.AddRow(new string[] {
+                            "Rayane",
+                            "Enzo"});
+                table23.AddRow(new string[] {
+                            "gerard",
+                            "Swan"});
+                table23.AddRow(new string[] {
+                            "John",
+                            "Rayane"});
+#line 363
+        testRunner.And("Users vote for candidate", ((string)(null)), table23, "And ");
+#line hidden
+#line 370
+        testRunner.And("I close the scrutin as a adminstrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 371
+        testRunner.When("I ask for the result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 372
+        testRunner.Then("I receive a multilinemessage", "--Les resultats du tour 1 sont: Mobutu: 50% Enzo: 20% Swan: 20% Rayane: 10% gerar" +
+                        "d: 0% jacque: 0% blank_vote: 0%--", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable

@@ -192,4 +192,17 @@ public sealed class ScrutinStepDefinitions
     {
         Assert.False(scrutin.IsClosed());
     }
+
+    [Given(@"A dictatorial scrutin is open for ""(.*)""")]
+    public void GivenADictatorialScrutinIsOpenFor(string mobutu)
+    {
+        GivenIHaveAListOfCandidate();
+        GivenIAmAAdministrator();
+        message = Scrutin.CreateScrutin(candidates, admin, WinningStrategyEnum.Dictatorial, mobutu);
+        scrutin = Scrutin.GetScrutin(message);
+        if (scrutin is Scrutin)
+        {
+            admin = scrutin.Administrator;
+        }
+    }
 }

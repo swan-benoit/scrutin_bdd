@@ -59,7 +59,8 @@ public class Scrutin
     }
 
     public static string CreateScrutin(List<User> candidates, User administrator,
-        WinningStrategyEnum winningStrategy = WinningStrategyEnum.AbsoluteMajority)
+        WinningStrategyEnum winningStrategy = WinningStrategyEnum.AbsoluteMajority,
+        string param = "")
     {
         WinningStrategy winnerStrategyInstance;
 
@@ -68,7 +69,10 @@ public class Scrutin
             case WinningStrategyEnum.AbsoluteMajority:
                 winnerStrategyInstance = new AbsoluteMajorityWinningStrategy();
                 break;
-            default: return "strategy inconnu";
+            case WinningStrategyEnum.Dictatorial:
+                winnerStrategyInstance = new DictatorialWinningStrategy(new User(param));
+                break;
+            default: return "unknown strategy";
         }
 
         if (candidates.Count < 2)

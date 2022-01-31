@@ -319,3 +319,57 @@ Link to a feature: [Calculator]($projectname$/Features/Calculator.feature)
         When I close the scrutin as a adminstrator
         And I ask for the winner
         Then I receive a message "Le gagnant est Swan"
+        
+    Scenario: Get winner of scrutin du second tour whith dictatorial scrutin
+        Given I am a user
+        And A dictatorial scrutin is open for "Mobutu"
+        And Users vote for candidate
+          | voter     | candidate  |
+          | Geraldine | Swan       |
+          | Enzo      | Enzo       |
+          | Enzo      | Enzo       |
+          | Rayane    | blank_vote |
+          | Rayane    | blank_vote |
+          | Rayane    | blank_vote |
+          | gerard    | Swan       |
+          | John      | Rayane     |
+        And I close the scrutin as a adminstrator
+        And Users vote for candidate
+          | voter     | candidate  |
+          | Geraldine | Swan       |
+          | Rayane    | blank_vote |
+          | Rayane    | blank_vote |
+          | Rayane    | blank_vote |
+          | gerard    | Swan       |
+          | Rayane    | blank_vote |
+          | Rayane    | blank_vote |
+          | Rayane    | blank_vote |
+          | gerard    | Swan       |
+          | gerard    | Swan       |
+          | gerard    | Swan       |
+          | gerard    | Swan       |
+          | gerard    | Swan       |
+          | Enzo      | Enzo       |
+          | Rayane    | Enzo       |
+          | gerard    | Swan       |
+          | John      | Enzo       |
+        When I close the scrutin as a adminstrator
+        And I ask for the winner
+        Then I receive a message "Le gagnant est Mobutu"
+        
+    Scenario: Get Result of scrutin du second tour for dictatorial result
+        Given I am a user
+        And A dictatorial scrutin is open for "Mobutu"
+        And Users vote for candidate
+          | voter     | candidate |
+          | Geraldine | Swan      |
+          | Enzo      | Enzo      |
+          | Rayane    | Enzo      |
+          | gerard    | Swan      |
+          | John      | Rayane    |
+        And I close the scrutin as a adminstrator
+        When I ask for the result
+        Then I receive a multilinemessage
+        """
+        --Les resultats du tour 1 sont: Mobutu: 50% Enzo: 20% Swan: 20% Rayane: 10% gerard: 0% jacque: 0% blank_vote: 0%--
+        """
